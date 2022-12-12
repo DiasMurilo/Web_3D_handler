@@ -1,0 +1,37 @@
+{
+  "name": "web_3d_handler",
+  "version": "1.0.0",
+  "description": "The project is based on typescript and make use of Three.js as main lib to handle 3D files.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack serve --config ./src/client/webpack.dev.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DiasMurilo/Web_3D_handler.git"
+  },
+  "keywords": [
+    "Threejs",
+    "typescript",
+    "3D"
+  ],
+  "author": "Murilo Dias",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DiasMurilo/Web_3D_handler/issues"
+  },
+  "homepage": "https://github.com/DiasMurilo/Web_3D_handler#readme",
+  "devDependencies": {
+    "@types/dat.gui": "^0.7.7",
+    "@types/three": "^0.146.0",
+    "dat.gui": "^0.7.9",
+    "three": "^0.147.0",
+    "ts-loader": "^9.4.2",
+    "typescript": "^4.9.4",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-merge": "^5.8.0"
+  }
+}
