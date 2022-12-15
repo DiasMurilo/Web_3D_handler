@@ -32,7 +32,7 @@ var boxSize: number[] = new Array()
 const absMaterial = new THREE.MeshNormalMaterial
 switch(ext){
     case 'fbx':
-       
+
         const fbxLoader = new FBXLoader()
         fbxLoader.load(
             url,
