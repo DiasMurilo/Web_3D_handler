@@ -49,7 +49,7 @@ const absMaterial = new THREE.MeshPhongMaterial({
     color: 0x1111111,
     wireframe: false,
     flatShading: false,
-    transparent: false
+    transparent: true
 })
 
 var isCustomMaterial = false;
@@ -235,15 +235,14 @@ function getBoxSize(object: THREE.Group | THREE.Object3D<THREE.Event> | THREE.Me
 //     }
 // })
 
-function materialConfig(object){
-    object.traverse(function (child) {
+function materialConfig(object: any){
+    object.traverse(function (child: any) {
         if ((child as THREE.Mesh).isMesh) {
             if (isCustomMaterial == true) {
                 (child as THREE.Mesh).material = absMaterial
             }
-            // (child as THREE.Mesh).shadow = true;
-            // (child as THREE.Mesh).castShadow = true;
-            // (child as THREE.Mesh).receiveShadow = true;
+            (child as THREE.Mesh).castShadow = true;
+            (child as THREE.Mesh).receiveShadow = true;
         }
     });
 }
