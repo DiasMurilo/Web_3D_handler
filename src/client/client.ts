@@ -87,6 +87,13 @@ switch (ext) {
         fbxLoader.load(
             url,
             (fbx) => {
+
+                // fbx.traverse(function (child) {
+                //     if ((child as THREE.Mesh).isMesh) {
+                //         (child as THREE.Mesh).material = absMaterial
+                //         materialConfig(child)
+                //     }
+                // })
                 materialConfig(fbx);
                 renderObject(fbx);
                 guiInitializer(absMaterial, fbx);
@@ -96,7 +103,8 @@ switch (ext) {
             },
             (error) => {
                 console.log(error);
-            }
+                // console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
+            },
         )
         break;
 
@@ -145,6 +153,7 @@ switch (ext) {
         break;
 
     case 'obj':
+
         const objLoader = new OBJLoader();
         objLoader.load(
             url,
@@ -225,21 +234,21 @@ function addShadowedLight(x: any, y: any, z: any, color: any, intensity: any) {
     directionalLight.shadow.bias = - 0.002;
 }
 
-function getBoxSize(object: any) {
+function getBoxSize(object: THREE.Group | THREE.Object3D<THREE.Event> | THREE.Mesh<THREE.BufferGeometry, THREE.MeshNormalMaterial>) {
     let boundingBox = new THREE.Box3().setFromObject(object);
     let boxSize = new THREE.Vector3();
     boundingBox.getSize(boxSize);
     return [Math.round(boxSize.x), Math.round(boxSize.y), Math.round(boxSize.z)]
 }
 
-function materialConfig(object: any) {
+function materialConfig(object: any){
     object.traverse(function (child: any) {
-        if (child.isMesh) {
+        if ((child as THREE.Mesh).isMesh) {
             if (isCustomMaterial == true) {
-                child.material = absMaterial;
+                (child as THREE.Mesh).material = absMaterial
             }
-            child.castShadow = true;
-            child.receiveShadow = true;
+            (child as THREE.Mesh).castShadow = true;
+            (child as THREE.Mesh).receiveShadow = true;
         }
     });
 }
@@ -252,6 +261,7 @@ function renderObject(object: THREE.Object3D) {
     boxSize = getBoxSize(object);
     setCamera(boxSize)
 }
+
 function guiInitializer(material: any, objectTD: THREE.Object3D) {
     const options = {
         wireframe: false,
